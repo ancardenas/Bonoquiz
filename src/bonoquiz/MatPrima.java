@@ -33,7 +33,7 @@ public class MatPrima extends Producto implements Serializable{
 
     @Override
     public void showTraza() {
-        System.out.println(this.nombre + "viene de la granja");
+        System.out.println(this.nombre + " viene de la granja");
         this.traza.get(0).darInformacion();//To change body of generated methods, choose Tools | Templates.
     }
 }

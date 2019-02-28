@@ -27,7 +27,7 @@ import sun.applet.Main;
 public class Bonoquiz {
 
     /**
-     * @param args the command line arguments
+     * @paraym args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
@@ -42,6 +42,7 @@ public class Bonoquiz {
        try {System.out.println("Cargando");
             entrada =new FileInputStream(objetos);
             reader = new ObjectInputStream(entrada);
+            
             au = (Auditor) reader.readObject();
             
             //UN.listSedes();
@@ -49,20 +50,34 @@ public class Bonoquiz {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         while(true){
-          int a = sc.nextInt();
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Bienvenido");
+            System.out.println("1 Añadir materia prima");
+            System.out.println("2 Añadir producto");
+            System.out.println("3 Eliminar producto o materia prima");
+            System.out.println("4 Traza de producto");
+            System.out.println("5 Traza de todos los productos");
+            System.out.println("6 Salir");
+            int a = sc.nextInt();
         switch(a){
-            case 1: System.out.println("Lista de granjas");
-                
-                System.out.println("Nombre de la materia prima");
+            case 1:System.out.println("Nombre de la materia prima");
                 String nom = sc.nextLine();
                 MatPrima aux = new  MatPrima(nom);
-                aux.addGranja();
                 au.prod.add(aux);break;
             case 2: System.out.println("Producto manofacturado");
                 System.out.println("Ingrese el nombre del producto");    
              String nom1 = sc.nextLine();
              nom1 = sc.nextLine();
                 au.prod.add(new Manofacturado(nom1));break;
+            case 3: for (int i = 0; i < au.prod.size(); i++) {
+                    System.out.println(i+" "+ au.prod.get(i).getNombre());
+                }System.out.println("Introduzca el numero del Producto que desea eliminar");
+                au.prod.remove(sc.nextInt());break;
+            case 4: System.out.println("De que porducto quiere conocer su traza");
+                for (int i = 0; i < au.prod.size(); i++) {
+                    System.out.println(i+" "+au.prod.get(i).getNombre());
+                }au.prod.get(sc.nextInt()).showTraza();break;
             case 5: for (int i = 0; i < au.prod.size(); i++) {
                     au.prod.get(i).showTraza();
                 }break;
